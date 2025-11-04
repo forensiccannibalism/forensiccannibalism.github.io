@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>j6n8</title>
+</head>
+<body>
+  <h1>j6n8</h1><p>Home Page: j6n8.github.io/mdvr.html</p>
+  <input id="url-input" type="text" placeholder="Enter a URL" style="width: 80%;" />
+  <button id="go-button">Go</button>
+  <div id="content-container" style="width: 100%; height: 90vh; border: none; overflow: auto;"></div>
+
+  <script>
+    function decrypt(encryptedText) {
+      const decryptionKey = {
+        'a': 'b', 'b': 'c', 'c': 'd', 'd': 'e', 'e': 'f', 'f': 'g', 'g': 'h', 'h': 'i',
+        'i': 'j', 'j': 'k', 'k': 'l', 'l': 'm', 'm': 'n', 'n': 'o', 'o': 'p', 'p': 'q',
+        'q': 'r', 'r': 's', 's': 't', 't': 'u', 'u': 'v', 'v': 'w', 'w': 'x', 'x': 'y',
+        'y': 'z', 'z': 'a', ' ': ' ', '\n': '\n', '<': '<', '>': '>',
+      };
+
+      return encryptedText.split('').map(char => decryptionKey[char] || char).join('');
+    }
+
+    const urlInput = document.getElementById('url-input');
+    const goButton = document.getElementById('go-button');
+    const contentContainer = document.getElementById('content-container');
+
+    goButton.addEventListener('click', async () => {
+      let url = urlInput.value.trim();
+      if (!url) {
+        alert('Please enter a URL');
+        return;
+      }
+      if (!url.startsWith('http://') && !url.startsWith('https://')) {
+        url = 'https://' + url;
+      }
+      try {
+        new URL(url);
+
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const encryptedContent = await response.text();
+
+        const decryptedContent = decrypt(encryptedContent);
+
+        contentContainer.innerHTML = decryptedContent;
+      } catch (e) {
+        alert('Error fetching or decrypting the content: ' + e.message);
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,1 +1,1 @@
-var siteVersion = "Alpha v0.1A";
+var siteVersion = "Alpha v0.1B";
