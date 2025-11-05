@@ -28,12 +28,37 @@
         Welcome to <b>Forensic Cannibalism</b>. Expect useless software, schizo-rants, and entire articles complaining about stupid things I see online. Forensic cannibalism is <i>the act of metaphorically defiling the grave of an idea in order to satisfy a morbid craving for obsolete comfort.</i> <a href="https://groups.spacehey.com/olderbrothercore">This</a> is a prime example of forensic cannibalism. Someone born years after the days of Y2K larping as an early-2000's kid, and in the process, soiling the idea of what that era even looked like.<br><br>This site was named the way it was since it could ironically be considered forensic cannibalism against old websites. Though, I really just like making simple sites without animations and requests to steal your info flooding your screen.
       </p>
 
-      <h3>Latest Update (2025/11/3)</h3>
-      <ul>
-        <li>Replaced info section with tools.</li>
-        <li>Added the extra section.</li>
-        <li>Added j6n8 to tools.</li>
-      </ul>
+    <div id="changelogs">
+      <div class="changelog active">
+        
+        <h3>Update (2025/11/04)</h3>
+        <ul>
+          <li>Added this changelogs viewer.</li>
+          <li>Added 'My Machines' to extra.</li>
+        </ul>
+      </div>
+        
+      <div class="changelog">
+        <h3>Update (2025/11/03)</h3>
+        <ul>
+          <li>Replaced 'info' section with 'tools'.</li>
+          <li>Added the 'extra' section.</li>
+          <li>Added j6n8 to tools.</li>
+        </ul>
+      </div>
+
+      <div class="changelog">
+        <h3>Update (2025/11/01)</h3>
+        <ul>
+          <li>Created the site. Everything you currently see was part of that so I'm not clarifying further.</li>
+        </ul>
+      </div>
+    </div>
+      
+    <div class="changelog-nav">
+      <button id="nextChangelog" class="arrow-btn">← Newer</button>
+      <button id="prevChangelog" class="arrow-btn">Older →</button>
+    </div>
 
       <hr>
 
@@ -46,10 +71,31 @@
       <img src="https://punkarchives.github.io/assets/logo.png" alt="[PA]" width="88" height="31">
       <img src="https://oppositeofmedicine.github.io/images/logo.png" alt="[OOM]" width="88" height="31">
     </div>
+  
+  <script src="version.js" type="text/javascript"></script>
+  <script>
+    const changelogs = document.querySelectorAll('.changelog');
+    let index = 0;
 
-    <script src="version.js" type="text/javascript"></script>
+    function showChangelog(i) {
+      changelogs.forEach((log, idx) => {
+        log.classList.toggle('active', idx === i);
+      });
+    }
+
+    document.getElementById('prevChangelog').addEventListener('click', () => {
+      index = (index + 1) % changelogs.length; // loop backwards
+      showChangelog(index);
+    });
+
+    document.getElementById('nextChangelog').addEventListener('click', () => {
+      index = (index - 1 + changelogs.length) % changelogs.length; // loop forwards
+      showChangelog(index);
+    });
+  </script>
+  
     <div class="footer">
-      <p>Forensic Cannibalism | <script>document.write(siteVersion);</script> | Page Last Edited On: 2025/11/1<br>Best Viewed In 4:3</p>
+      <p>Forensic Cannibalism | <script>document.write(siteVersion);</script> | Page Last Edited On: 2025/11/4<br>Best Viewed In 4:3</p>
     </div>
 
 
